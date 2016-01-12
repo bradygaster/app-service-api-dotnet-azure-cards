@@ -8,7 +8,7 @@ using Microsoft.Rest;
 
 namespace AzureCards.ConsoleClient
 {
-    public partial interface IAzureCardsClient : IDisposable
+    public partial interface IAzureCards20160112022005 : IDisposable
     {
         /// <summary>
         /// The base URI of the service.

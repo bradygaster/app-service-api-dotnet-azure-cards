@@ -1,24 +1,15 @@
-﻿using Microsoft.Azure.AppService;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System;
 
 namespace AzureCards.ConsoleClient
 {
     class Program
     {
-        private const string GW_URL = "http://devintersectionseu66c15fe52d0b446c920739d03a993afa.azurewebsites.net/";
         private const string URL_TOKEN = "#token=";
 
         [STAThread]
         static void Main(string[] args)
         {
-            var appServiceClient = new AppServiceClient(GW_URL);
-            var deckClient = appServiceClient.CreateAzureCardsClient();
+            var deckClient = new AzureCards20160112022005();
             var deckId = deckClient.Deck.New();
 
             Console.WriteLine(string.Format("Your new Deck ID is {0}", deckId));
@@ -36,6 +27,7 @@ namespace AzureCards.ConsoleClient
             Console.ReadLine();
         }
 
+        /*
         #region
         private static void AuthorizeClient(AppServiceClient appServiceClient)
         {
@@ -68,5 +60,6 @@ namespace AzureCards.ConsoleClient
             frm.ShowDialog();
         }
         #endregion
+        */
     }
 }

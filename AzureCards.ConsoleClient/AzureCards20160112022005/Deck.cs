@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AzureCards.ConsoleClient
 {
-    internal partial class Deck : IServiceOperations<AzureCardsClient>, IDeck
+    internal partial class Deck : IServiceOperations<AzureCards20160112022005>, IDeck
     {
         /// <summary>
         /// Initializes a new instance of the Deck class.
@@ -23,17 +23,18 @@ namespace AzureCards.ConsoleClient
         /// <param name='client'>
         /// Reference to the service client.
         /// </param>
-        internal Deck(AzureCardsClient client)
+        internal Deck(AzureCards20160112022005 client)
         {
             this._client = client;
         }
         
-        private AzureCardsClient _client;
+        private AzureCards20160112022005 _client;
         
         /// <summary>
-        /// Gets a reference to the AzureCards.ConsoleClient.AzureCardsClient.
+        /// Gets a reference to the
+        /// AzureCards.ConsoleClient.AzureCards20160112022005.
         /// </summary>
-        public AzureCardsClient Client
+        public AzureCards20160112022005 Client
         {
             get { return this._client; }
         }
@@ -170,7 +171,7 @@ namespace AzureCards.ConsoleClient
             
             // Construct URL
             string url = "";
-            url = url + "/deck/new";
+            url = url + "/deck";
             string baseUrl = this.Client.BaseUri.AbsoluteUri;
             // Trim '/' character from the end of baseUrl and beginning of url.
             if (baseUrl[baseUrl.Length - 1] == '/')
