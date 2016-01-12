@@ -15,7 +15,6 @@ namespace Cards.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DeckController : ApiController
     {
-        // todo: build the new deck api method
         private DeckIsolatedStorage _deckStorage;
         public DeckController()
         {
@@ -23,20 +22,19 @@ namespace Cards.Controllers
         }
 
         [HttpPost]
-        [Route("deck/new")]
-        public async Task<string> New()
+        [Route("deck")]
+        public string New()
         {
-            var deckId = await _deckStorage.New(new Deck());
+            var deckId = _deckStorage.New(new Deck());
             return deckId;
         }
 
-        // todo: build a shuffle feature
         [HttpGet]
         [ResponseType(typeof(bool))]
         [Route("deck/{deckId}/shuffle")]
-        public async Task<HttpResponseMessage> Shuffle(string deckId)
+        public HttpResponseMessage Shuffle(string deckId)
         {
-            var deck = await _deckStorage.GetById(deckId);
+            var deck = _deckStorage.GetById(deckId);
 
             if (deck == null)
             {
@@ -46,19 +44,18 @@ namespace Cards.Controllers
             }
 
             deck.Shuffle();
-            await _deckStorage.Save(deckId, deck);
+            _deckStorage.Save(deckId, deck);
             var foundResponse = Request.CreateResponse<bool>(true);
             foundResponse.StatusCode = HttpStatusCode.OK;
             return foundResponse;
         }
 
-        // todo: allow users to deal cards
         [HttpGet]
         [ResponseType(typeof(DealResponseMessage))]
         [Route("deck/{deckId}/deal/{cardCount}")]
-        public async Task<HttpResponseMessage> Deal(string deckId, int cardCount)
+        public HttpResponseMessage Deal(string deckId, int cardCount)
         {
-            var deck = await _deckStorage.GetById(deckId);
+            var deck = _deckStorage.GetById(deckId);
 
             // if the deck's already been played return a not found
             if (deck.RemainingCards.Count == 0)
@@ -73,7 +70,7 @@ namespace Cards.Controllers
             deck.RemainingCards.RemoveRange(0, cardCount);
 
             // update the deck
-            await _deckStorage.Save(deckId, deck);
+            _deckStorage.Save(deckId, deck);
 
             // respond with the content
             var response = Request.CreateResponse<DealResponseMessage>(new DealResponseMessage
