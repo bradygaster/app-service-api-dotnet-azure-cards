@@ -1,5 +1,6 @@
 ﻿using AzureCards;
 using AzureCards.Models;
+using Swashbuckle.Swagger.Annotations;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,6 @@ using System.Web.Http.Description;
 
 namespace Cards.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DeckController : ApiController
     {
         private DeckIsolatedStorage _deckStorage;
@@ -23,6 +23,7 @@ namespace Cards.Controllers
 
         [HttpPost]
         [Route("deck")]
+        [ResponseType(typeof(string))]
         public string New()
         {
             var deckId = _deckStorage.New(new Deck());
@@ -53,6 +54,8 @@ namespace Cards.Controllers
         [HttpGet]
         [ResponseType(typeof(DealResponseMessage))]
         [Route("deck/{deckId}/deal/{cardCount}")]
+        [SwaggerResponse(HttpStatusCode.OK, Description = "Deck found", Type = typeof(DealResponseMessage))]
+        [SwaggerResponse(HttpStatusCode.NotFound, Description = "Deck not found", Type = typeof(DealResponseMessage))]
         public HttpResponseMessage Deal(string deckId, int cardCount)
         {
             var deck = _deckStorage.GetById(deckId);
@@ -74,9 +77,9 @@ namespace Cards.Controllers
 
             // respond with the content
             var response = Request.CreateResponse<DealResponseMessage>(new DealResponseMessage
-                {
-                    Cards = deal
-                });
+            {
+                Cards = deal
+            });
 
             response.StatusCode = deal.Count() > 0 ? HttpStatusCode.OK : HttpStatusCode.NotFound;
             return response;

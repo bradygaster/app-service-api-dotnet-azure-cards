@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AzureCards.ConsoleClient
 {
-    internal partial class Deck : IServiceOperations<AzureCards20160112022005>, IDeck
+    internal partial class Deck : IServiceOperations<AzureCardsTechReadyDemo>, IDeck
     {
         /// <summary>
         /// Initializes a new instance of the Deck class.
@@ -23,18 +23,18 @@ namespace AzureCards.ConsoleClient
         /// <param name='client'>
         /// Reference to the service client.
         /// </param>
-        internal Deck(AzureCards20160112022005 client)
+        internal Deck(AzureCardsTechReadyDemo client)
         {
             this._client = client;
         }
         
-        private AzureCards20160112022005 _client;
+        private AzureCardsTechReadyDemo _client;
         
         /// <summary>
         /// Gets a reference to the
-        /// AzureCards.ConsoleClient.AzureCards20160112022005.
+        /// AzureCards.ConsoleClient.AzureCardsTechReadyDemo.
         /// </summary>
-        public AzureCards20160112022005 Client
+        public AzureCardsTechReadyDemo Client
         {
             get { return this._client; }
         }
@@ -113,7 +113,7 @@ namespace AzureCards.ConsoleClient
             HttpStatusCode statusCode = httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (statusCode != HttpStatusCode.OK)
+            if (statusCode != HttpStatusCode.OK && statusCode != HttpStatusCode.NotFound)
             {
                 HttpOperationException<object> ex = new HttpOperationException<object>();
                 ex.Request = httpRequest;
@@ -132,7 +132,7 @@ namespace AzureCards.ConsoleClient
             result.Response = httpResponse;
             
             // Deserialize Response
-            if (statusCode == HttpStatusCode.OK)
+            if (statusCode == HttpStatusCode.OK || statusCode == HttpStatusCode.NotFound)
             {
                 DealResponseMessage resultModel = new DealResponseMessage();
                 JToken responseDoc = null;

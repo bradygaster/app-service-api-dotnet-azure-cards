@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AzureCards.ConsoleClient
 {
-    public static partial class AzureCards20160112022005Extensions
+    public static partial class AzureCardsTechReadyDemoExtensions
     {
     }
 }

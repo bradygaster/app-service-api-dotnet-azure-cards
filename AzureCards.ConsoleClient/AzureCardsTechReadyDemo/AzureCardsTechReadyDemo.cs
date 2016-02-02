@@ -9,7 +9,7 @@ using Microsoft.Rest;
 
 namespace AzureCards.ConsoleClient
 {
-    public partial class AzureCards20160112022005 : ServiceClient<AzureCards20160112022005>, IAzureCards20160112022005
+    public partial class AzureCardsTechReadyDemo : ServiceClient<AzureCardsTechReadyDemo>, IAzureCardsTechReadyDemo
     {
         private Uri _baseUri;
         
@@ -41,31 +41,31 @@ namespace AzureCards.ConsoleClient
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
-        public AzureCards20160112022005()
+        public AzureCardsTechReadyDemo()
             : base()
         {
             this._deck = new Deck(this);
-            this._baseUri = new Uri("https://azurecards20160112022005.azurewebsites.net:443");
+            this._baseUri = new Uri("https://azurecardstechreadydemo.azurewebsites.net");
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The set of delegating handlers to insert in the http
         /// client pipeline.
         /// </param>
-        public AzureCards20160112022005(params DelegatingHandler[] handlers)
+        public AzureCardsTechReadyDemo(params DelegatingHandler[] handlers)
             : base(handlers)
         {
             this._deck = new Deck(this);
-            this._baseUri = new Uri("https://azurecards20160112022005.azurewebsites.net:443");
+            this._baseUri = new Uri("https://azurecardstechreadydemo.azurewebsites.net");
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -74,15 +74,15 @@ namespace AzureCards.ConsoleClient
         /// Optional. The set of delegating handlers to insert in the http
         /// client pipeline.
         /// </param>
-        public AzureCards20160112022005(HttpClientHandler rootHandler, params DelegatingHandler[] handlers)
+        public AzureCardsTechReadyDemo(HttpClientHandler rootHandler, params DelegatingHandler[] handlers)
             : base(rootHandler, handlers)
         {
             this._deck = new Deck(this);
-            this._baseUri = new Uri("https://azurecards20160112022005.azurewebsites.net:443");
+            this._baseUri = new Uri("https://azurecardstechreadydemo.azurewebsites.net");
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -91,7 +91,7 @@ namespace AzureCards.ConsoleClient
         /// Optional. The set of delegating handlers to insert in the http
         /// client pipeline.
         /// </param>
-        public AzureCards20160112022005(Uri baseUri, params DelegatingHandler[] handlers)
+        public AzureCardsTechReadyDemo(Uri baseUri, params DelegatingHandler[] handlers)
             : this(handlers)
         {
             if (baseUri == null)
@@ -102,7 +102,7 @@ namespace AzureCards.ConsoleClient
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Credentials for authenticating with the service.
@@ -111,7 +111,7 @@ namespace AzureCards.ConsoleClient
         /// Optional. The set of delegating handlers to insert in the http
         /// client pipeline.
         /// </param>
-        public AzureCards20160112022005(ServiceClientCredentials credentials, params DelegatingHandler[] handlers)
+        public AzureCardsTechReadyDemo(ServiceClientCredentials credentials, params DelegatingHandler[] handlers)
             : this(handlers)
         {
             if (credentials == null)
@@ -127,7 +127,7 @@ namespace AzureCards.ConsoleClient
         }
         
         /// <summary>
-        /// Initializes a new instance of the AzureCards20160112022005 class.
+        /// Initializes a new instance of the AzureCardsTechReadyDemo class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -139,7 +139,7 @@ namespace AzureCards.ConsoleClient
         /// Optional. The set of delegating handlers to insert in the http
         /// client pipeline.
         /// </param>
-        public AzureCards20160112022005(Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers)
+        public AzureCardsTechReadyDemo(Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers)
             : this(handlers)
         {
             if (baseUri == null)
