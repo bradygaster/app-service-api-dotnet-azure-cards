@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AzureCards.ConsoleClient
 {
@@ -10,7 +7,15 @@ namespace AzureCards.ConsoleClient
     {
         static void Main(string[] args)
         {
-            AzureCardsTechReadyDemo client = new AzureCardsTechReadyDemo();
+            AzureCardsTechReadyDemo client = new AzureCardsTechReadyDemo(
+                #region For use with API Management
+                /*
+                new Uri(ApimDelegatingHandler.BASE_URI_CARDS),
+                new ApimDelegatingHandler(ApimDelegatingHandler.APIM_AUTH_HEADER)
+                */
+                #endregion
+            );
+
             var deckId = client.Deck.New();
             Console.WriteLine($"Deck {deckId} created, shuffling");
 

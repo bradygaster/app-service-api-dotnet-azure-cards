@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApimDelegatingHandler.cs" />
     <Compile Include="AzureCardsTechReadyDemo\AzureCardsTechReadyDemo.cs" />
     <Compile Include="AzureCardsTechReadyDemo\AzureCardsTechReadyDemoExtensions.cs" />
     <Compile Include="AzureCardsTechReadyDemo\Deck.cs" />

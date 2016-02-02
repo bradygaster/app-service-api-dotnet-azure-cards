@@ -54,8 +54,10 @@ namespace Cards.Controllers
         [HttpGet]
         [ResponseType(typeof(DealResponseMessage))]
         [Route("deck/{deckId}/deal/{cardCount}")]
+        #region Customizing HTTP Response Codes using Swashbuckle
         [SwaggerResponse(HttpStatusCode.OK, Description = "Deck found", Type = typeof(DealResponseMessage))]
         [SwaggerResponse(HttpStatusCode.NotFound, Description = "Deck not found", Type = typeof(DealResponseMessage))]
+        #endregion
         public HttpResponseMessage Deal(string deckId, int cardCount)
         {
             var deck = _deckStorage.GetById(deckId);
